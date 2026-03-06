@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription scolaire - EcoleFacile.cd</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: var(--light-bg);">
+    <!-- Header simplifié -->
+    <header class="header">
+        <div class="container">
+            <div class="nav" style="justify-content: space-between;">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-school logo-icon"></i>
+                    <div class="logo-text">Ecole<span>Facile</span>.cd</div>
+                </a>
+                <a href="javascript:history.back()" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container container-sm">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="step active" id="step1">1</div>
+                <div class="step" id="step2">2</div>
+                <div class="step" id="step3">3</div>
+            </div>
+            <div class="step-labels">
+                <span>Informations</span>
+                <span>Documents</span>
+                <span>Confirmation</span>
+            </div>
+        </div>
+
+        <!-- Step 1: Informations -->
+        <div id="step1-content" style="display: block;">
+            <div class="form-card">
+                <h2 class="form-title">
+                    <i class="fas fa-child"></i>
+                    Informations de l'enfant
+                </h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nom de l'enfant <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="childName" placeholder="Ex: Kabasele" required>
+                        <div class="error-message" id="childNameError">Ce champ est requis</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Prénom <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="childFirstname" placeholder="Ex: Marie" required>
+                        <div class="error-message" id="childFirstnameError">Ce champ est requis</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Date de naissance <span class="required">*</span></label>
+                        <input type="date" class="form-input" id="birthDate" required>
+                        <div class="error-message" id="birthDateError">Ce champ est requis</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Sexe <span class="required">*</span></label>
+                        <select class="form-select" id="gender" required>
+                            <option value="">Sélectionnez</option>
+                            <option value="F">Féminin</option>
+                            <option value="M">Masculin</option>
+                        </select>
+                        <div class="error-message" id="genderError">Ce champ est requis</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Classe souhaitée <span class="required">*</span></label>
+                    <select class="form-select" id="classLevel" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="CP1">CP1</option>
+                        <option value="CP2">CP2</option>
+                        <option value="CE1">CE1</option>
+                        <option value="CE2">CE2</option>
+                        <option value="CM1">CM1</option>
+                        <option value="CM2">CM2</option>
+                        <option value="6ème">6ème</option>
+                        <option value="5ème">5ème</option>
+                        <option value="4ème">4ème</option>
+                        <option value="3ème">3ème</option>
+                        <option value="2nde">2nde</option>
+                        <option value="1ère">1ère</option>
+                        <option value="Tle">Terminale</option>
+                    </select>
+                    <div class="error-message" id="classLevelError">Ce champ est requis</div>
+                </div>
+            </div>
+            
+            <div class="form-card" style="margin-top: var(--space-8);">
+                <h2 class="form-title">
+                    <i class="fas fa-user"></i>
+                    Informations du parent
+                </h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nom du parent <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="parentName" placeholder="Ex: Kabasele" required>
+                        <div class="error-message" id="parentNameError">Ce champ est requis</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Prénom <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="parentFirstname" placeholder="Ex: Joseph" required>
+                        <div class="error-message" id="parentFirstnameError">Ce champ est requis</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Téléphone <span class="required">*</span></label>
+                        <div class="phone-input-group">
+                            <select class="form-select country-code">
+                                <option value="+243">+243 RDC</option>
+                                <option value="+242">+242 Congo</option>
+                                <option value="+241">+241 Gabon</option>
+                            </select>
+                            <input type="tel" class="form-input phone-number" id="parentPhone" placeholder="81 234 5678" required>
+                        </div>
+                        <div class="error-message" id="parentPhoneError">Numéro de téléphone invalide</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="parentEmail" placeholder="exemple@email.com">
+                        <div class="error-message" id="parentEmailError">Email invalide</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" class="form-input" id="address" placeholder="Votre adresse à Kinshasa">
+                </div>
+            </div>
+            
+            <div class="form-navigation">
+                <a href="ecoles.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Changer d'école
+                </a>
+                <button class="btn btn-primary" onclick="nextStep()">
+                    Étape suivante
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2: Documents -->
+        <div id="step2-content" style="display: none;">
+            <div class="form-card">
+                <h2 class="form-title">
+                    <i class="fas fa-file-upload"></i>
+                    Documents requis
+                </h2>
+                
+                <div class="form-group">
+                    <label class="form-label">Acte de naissance <span class="required">*</span></label>
+                    <div class="file-upload" onclick="document.getElementById('birthCertificate').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Cliquez pour télécharger l'acte de naissance (PDF, JPG, PNG)</p>
+                        <input type="file" id="birthCertificate" style="display: none;" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Photo d'identité <span class="required">*</span></label>
+                    <div class="file-upload" onclick="document.getElementById('photo').click()">
+                        <i class="fas fa-camera"></i>
+                        <p>Cliquez pour télécharger une photo (JPG, PNG)</p>
+                        <input type="file" id="photo" style="display: none;" accept=".jpg,.jpeg,.png" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Certificat médical (optionnel)</label>
+                    <div class="file-upload" onclick="document.getElementById('medical').click()">
+                        <i class="fas fa-file-medical"></i>
+                        <p>Cliquez pour télécharger le certificat médical</p>
+                        <input type="file" id="medical" style="display: none;" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="certify" required>
+                    <label for="certify">
+                        Je certifie que les informations fournies sont exactes et que les documents téléchargés sont authentiques. <span class="required">*</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-navigation">
+                <button class="btn btn-outline" onclick="prevStep()">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour
+                </button>
+                <button class="btn btn-primary" onclick="nextStep()">
+                    Étape suivante
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 3: Confirmation -->
+        <div id="step3-content" style="display: none;">
+            <div class="form-card">
+                <h2 class="form-title">
+                    <i class="fas fa-check-circle"></i>
+                    Confirmation de l'inscription
+                </h2>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-school"></i> École choisie</h3>
+                    <div class="info-row">
+                        <span class="info-label">École :</span>
+                        <span class="info-value" id="summary-school">Complexe Scolaire Les Aigles</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Frais d'inscription :</span>
+                        <span class="info-value">50$</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">1er trimestre :</span>
+                        <span class="info-value" id="summary-fees">350$</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-child"></i> Enfant</h3>
+                    <div class="info-row">
+                        <span class="info-label">Nom complet :</span>
+                        <span class="info-value" id="summary-child">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Classe :</span>
+                        <span class="info-value" id="summary-class">-</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-user"></i> Parent</h3>
+                    <div class="info-row">
+                        <span class="info-label">Nom :</span>
+                        <span class="info-value" id="summary-parent">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Téléphone :</span>
+                        <span class="info-value" id="summary-phone">-</span>
+                    </div>
+                </div>
+                
+                <div class="total-amount">
+                    Total à payer : <span id="total-amount">400$</span>
+                </div>
+                
+                <div style="margin-top: var(--space-8);">
+                    <h3 style="color: var(--blue-kinshasa); margin-bottom: var(--space-4);">Moyen de paiement</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="selectPayment('mpesa')">M-Pesa</button>
+                        <button class="filter-btn" onclick="selectPayment('airtel')">Airtel Money</button>
+                        <button class="filter-btn" onclick="selectPayment('orange')">Orange Money</button>
+                        <button class="filter-btn" onclick="selectPayment('bank')">Banque</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-navigation">
+                <button class="btn btn-outline" onclick="prevStep()">
+                    <i class="fas fa-arrow-left"></i>
+                    Modifier
+                </button>
+                <a href="confirmation.html" class="btn btn-primary">
+                    Confirmer et payer
+                    <i class="fas fa-check"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    
+    <!-- Script spécifique à la page d'inscription -->
+    <script>
+        function selectPayment(method) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Mettre à jour le résumé avec les données saisies
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer l'école depuis l'URL
+            const ecoleId = getUrlParameter('ecole');
+            const ecoles = {
+                'les-aigles': { nom: 'Complexe Scolaire Les Aigles', frais: 350 },
+                'belge': { nom: 'École Belge de Kinshasa', frais: 500 },
+                'kabambare': { nom: 'Lycée Kabambare', frais: 150 }
+            };
+            
+            if (ecoles[ecoleId]) {
+                document.getElementById('summary-school').textContent = ecoles[ecoleId].nom;
+                document.getElementById('summary-fees').textContent = ecoles[ecoleId].frais + '$';
+                
+                const total = ecoles[ecoleId].frais + 50; // + frais d'inscription
+                document.getElementById('total-amount').textContent = total + '$';
+            }
+        });
+    </script>
+</body>
+</html>

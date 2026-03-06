@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Questions fréquentes - EcoleFacile.cd</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Styles spécifiques à la FAQ */
+        .faq-hero {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(4, 120, 87, 0.8));
+            color: var(--white);
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .faq-hero h1 {
+            color: var(--white);
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--space-4);
+        }
+        
+        .faq-hero p {
+            color: var(--white);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto var-space-8;
+        }
+        
+        .faq-search {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .faq-search input {
+            width: 100%;
+            padding: var(--space-4) var(--space-4) var(--space-4) 3rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .faq-search i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            margin: var(--space-8) 0;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: var(--space-2) var(--space-4);
+            border: 2px solid var(--white);
+            background: transparent;
+            color: var(--white);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--white);
+            color: var(--blue-kinshasa);
+        }
+        
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto var-space-12;
+        }
+        
+        .faq-section-title {
+            color: var(--blue-kinshasa);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-2);
+            border-bottom: 2px solid var(--yellow-sun);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            overflow: hidden;
+            transition: all var(--transition-fast);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue-light);
+        }
+        
+        .faq-question {
+            padding: var(--space-4) var(--space-6);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--black);
+            transition: all var(--transition-fast);
+        }
+        
+        .faq-question:hover {
+            background: var(--light-bg);
+        }
+        
+        .faq-question i {
+            color: var(--green-forest);
+            transition: transform var(--transition-fast);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--space-6);
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            background: var(--light-bg);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: var(--space-4) var(--space-6) var(--space-6);
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            color: var(--gray-dark);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+        }
+        
+        .faq-answer ul,
+        .faq-answer ol {
+            margin-left: var(--space-6);
+            margin-bottom: var(--space-4);
+            color: var(--gray-dark);
+        }
+        
+        .faq-answer li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .faq-answer .highlight {
+            background: var(--off-white);
+            padding: var(--space-4);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--yellow-sun);
+            margin: var(--space-4) 0;
+        }
+        
+        .still-have-questions {
+            background: linear-gradient(135deg, var(--blue-kinshasa), var(--green-forest));
+            color: var(--white);
+            padding: var(--space-12) 0;
+            text-align: center;
+            margin-top: var(--space-12);
+        }
+        
+        .still-have-questions h2 {
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+        
+        .still-have-questions p {
+            color: var(--white);
+            opacity: 0.9;
+            margin-bottom: var(--space-8);
+        }
+        
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .contact-option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+        }
+        
+        .contact-option:hover {
+            background: var(--white);
+            color: var(--blue-kinshasa);
+            transform: translateY(-2px);
+        }
+        
+        .contact-option i {
+            font-size: var(--font-size-xl);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: var(--space-8);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: var(--gray);
+            margin-bottom: var(--space-4);
+        }
+        
+        .no-results h3 {
+            color: var(--blue-kinshasa);
+            margin-bottom: var(--space-2);
+        }
+        
+        .no-results p {
+            color: var(--gray);
+            margin-bottom: var(--space-4);
+        }
+        
+        .no-results .btn {
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-hero h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .faq-categories {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .category-btn {
+                text-align: center;
+            }
+            
+            .contact-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-option {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-school logo-icon"></i>
+                <div class="logo-text">Ecole<span>Facile</span>.cd</div>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="ecoles.html" class="nav-link">Écoles</a></li>
+                    <li><a href="index.html#comment-ca-marche" class="nav-link">Comment ça marche</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="faq-hero">
+        <div class="container">
+            <h1>Questions fréquentes</h1>
+            <p>Trouvez rapidement les réponses aux questions les plus posées par les parents</p>
+            
+            <div class="faq-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="faqSearch" placeholder="Rechercher une question... (ex: inscription, paiement, documents)">
+            </div>
+            
+            <div class="faq-categories" id="faqCategories">
+                <button class="category-btn active" data-category="all">Toutes</button>
+                <button class="category-btn" data-category="inscription">Inscription</button>
+                <button class="category-btn" data-category="paiement">Paiement</button>
+                <button class="category-btn" data-category="documents">Documents</button>
+                <button class="category-btn" data-category="ecoles">Écoles</button>
+                <button class="category-btn" data-category="technique">Technique</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="section">
+        <div class="container">
+            <div id="faqContainer">
+                <!-- Section Inscription -->
+                <div class="faq-section" data-category="inscription">
+                    <h2 class="faq-section-title">
+                        <i class="fas fa-pen" style="color: var(--yellow-sun);"></i>
+                        Inscription
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Comment inscrire mon enfant sur EcoleFacile.cd ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>L'inscription se fait en 3 étapes simples :</p>
+                            <ol>
+                                <li><strong>Choisissez une école</strong> dans notre liste d'établissements partenaires</li>
+                                <li><strong>Remplissez le formulaire</strong> avec les informations de votre enfant</li>
+                                <li><strong>Téléchargez les documents</strong> requis (acte de naissance, photo)</li>
+                                <li><strong>Confirmez et payez</strong> les frais d'inscription</li>
+                            </ol>
+                            <div class="highlight">
+                                <p><i class="fas fa-clock"></i> L'inscription prend environ 10 minutes. Un numéro de confirmation vous sera envoyé par SMS.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Puis-je inscrire plusieurs enfants en même temps ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Oui, absolument ! Pour inscrire plusieurs enfants :</p>
+                            <ol>
+                                <li>Après avoir inscrit le premier enfant, vous verrez un bouton "Ajouter un autre enfant"</li>
+                                <li>Cliquez dessus pour recommencer le processus pour le deuxième enfant</li>
+                                <li>Vous pouvez inscrire jusqu'à 5 enfants en une seule session</li>
+                            </ol>
+                            <p>Les frais seront calculés séparément pour chaque enfant selon l'école choisie.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Y a-t-il un âge minimum ou maximum pour l'inscription ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>L'âge requis dépend de chaque école et du niveau scolaire. En général :</p>
+                            <ul>
+                                <li><strong>Maternelle :</strong> 3-5 ans</li>
+                                <li><strong>Primaire :</strong> 6-11 ans</li>
+                                <li><strong>Secondaire :</strong> 12-18 ans</li>
+                            </ul>
+                            <p>Vérifiez la page de l'école pour les conditions spécifiques. Certaines écoles peuvent avoir des tests d'admission pour certains niveaux.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Que faire si l'école que je cherche n'est pas dans la liste ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Si votre école n'est pas encore partenaire, vous pouvez :</p>
+                            <ul>
+                                <li><strong>Nous contacter</strong> via le formulaire de contact ou WhatsApp</li>
+                                <li><strong>Proposer à l'école</strong> de nous rejoindre (c'est gratuit pour les écoles)</li>
+                                <li><strong>Vérifier régulièrement</strong> car nous ajoutons de nouvelles écoles chaque semaine</li>
+                            </ul>
+                            <p>Vous pouvez aussi nous envoyer le nom de l'école, nous la contacterons pour l'ajouter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Paiement -->
+                <div class="faq-section" data-category="paiement">
+                    <h2 class="faq-section-title">
+                        <i class="fas fa-credit-card" style="color: var(--yellow-sun);"></i>
+                        Paiement
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Quels sont les moyens de paiement acceptés ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Nous acceptons plusieurs moyens de paiement adaptés à la RDC :</p>
+                            <ul>
+                                <li><strong><i class="fas fa-mobile-alt"></i> M-Pesa</strong> - Paiement instantané</li>
+                                <li><strong><i class="fas fa-sim-card"></i> Airtel Money</strong> - Paiement instantané</li>
+                                <li><strong><i class="fas fa-signal"></i> Orange Money</strong> - Paiement instantané</li>
+                                <li><strong><i class="fas fa-university"></i> Virement bancaire</strong> - Traitement sous 24-48h</li>
+                                <li><strong><i class="fas fa-building"></i> Paiement en agence</strong> - Code généré à présenter à la banque</li>
+                            </ul>
+                            <div class="highlight">
+                                <p><i class="fas fa-check-circle" style="color: var(--green-forest);"></i> Les paiements Mobile Money sont instantanés et sécurisés.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Puis-je payer en plusieurs fois ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Cela dépend des écoles :</p>
+                            <ul>
+                                <li><strong>Certaines écoles</strong> proposent le paiement en 2 ou 3 fois</li>
+                                <li><strong>L'option est indiquée</strong> sur la page de l'école et lors du paiement</li>
+                                <li><strong>Contactez l'école directement</strong> pour discuter d'un arrangement personnalisé</li>
+                            </ul>
+                            <p>Si l'option de paiement échelonné est disponible, vous verrez "Payer en plusieurs fois" lors du choix du mode de paiement.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Que faire si mon paiement échoue ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>En cas d'échec de paiement :</p>
+                            <ol>
+                                <li>Vérifiez votre solde Mobile Money</li>
+                                <li>Assurez-vous que votre numéro est correct</li>
+                                <li>Réessayez après 5-10 minutes (parfois des délais réseau)</li>
+                                <li>Si le problème persiste, contactez votre opérateur :</li>
+                                <ul>
+                                    <li><strong>M-Pesa :</strong> *555#</li>
+                                    <li><strong>Airtel Money :</strong> *125#</li>
+                                    <li><strong>Orange Money :</strong> *144#</li>
+                                </ul>
+                            </ol>
+                            <p><strong>Important :</strong> Si l'argent a été débité mais que l'inscription n'est pas confirmée, contactez-nous immédiatement avec le numéro de transaction. Nous régulariserons sous 24h.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Les prix sont-ils en dollars ou en francs congolais ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Les prix sont affichés dans la devise choisie par l'école :</p>
+                            <ul>
+                                <li><strong>La plupart des écoles privées</strong> affichent leurs tarifs en dollars ($)</li>
+                                <li><strong>Les écoles publiques</strong> affichent généralement en francs congolais (FC)</li>
+                            </ul>
+                            <p>Au moment du paiement, vous verrez le montant converti si vous payez dans une autre devise. Le taux de change appliqué est celui du jour de la transaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Documents -->
+                <div class="faq-section" data-category="documents">
+                    <h2 class="faq-section-title">
+                        <i class="fas fa-file" style="color: var(--yellow-sun);"></i>
+                        Documents
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Quels documents sont nécessaires pour l'inscription ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Les documents généralement requis sont :</p>
+                            <ul>
+                                <li><strong><i class="fas fa-file-pdf"></i> Acte de naissance</strong> de l'enfant (photo ou scan)</li>
+                                <li><strong><i class="fas fa-camera"></i> Photo d'identité</strong> récente de l'enfant</li>
+                                <li><strong><i class="fas fa-file-medical"></i> Certificat médical</strong> (selon l'école)</li>
+                                <li><strong><i class="fas fa-file-alt"></i> Bulletins</strong> de l'année précédente (pour les transferts)</li>
+                                <li><strong><i class="fas fa-id-card"></i> Photo du parent</strong> (parfois demandée)</li>
+                            </ul>
+                            <p><strong>Formats acceptés :</strong> PDF, JPG, PNG. Taille maximale : 5 Mo par fichier.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Comment prendre une bonne photo avec mon téléphone ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Conseils pour prendre une photo acceptable :</p>
+                            <ol>
+                                <li><strong>Bonne luminosité</strong> - Évitez le flash, préférez la lumière naturelle</li>
+                                <li><strong>Cadrage</strong> - L'enfant doit occuper 70% de la photo</li>
+                                <li><strong>Fond clair</strong> - De préférence blanc ou uni</li>
+                                <li><strong>Visage bien visible</strong> - Pas de chapeau ou de lunettes de soleil</li>
+                            </ol>
+                            <p>Pour les documents (acte de naissance), prenez la photo à plat, bien éclairée, sans ombre.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Puis-je modifier les documents après l'inscription ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Une fois l'inscription validée, vous ne pouvez plus modifier les documents vous-même. Si vous devez remplacer un document :</p>
+                            <ol>
+                                <li><strong>Contactez le support</strong> via WhatsApp ou email</li>
+                                <li><strong>Indiquez votre numéro de confirmation</strong> et le document à remplacer</li>
+                                <li><strong>Envoyez le nouveau document</strong> (nous vous donnerons la procédure)</li>
+                            </ol>
+                            <p>Les modifications sont traitées sous 24-48h.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Écoles -->
+                <div class="faq-section" data-category="ecoles">
+                    <h2 class="faq-section-title">
+                        <i class="fas fa-school" style="color: var(--yellow-sun);"></i>
+                        Écoles
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Comment sont sélectionnées les écoles sur la plateforme ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Nos écoles partenaires :</p>
+                            <ul>
+                                <li>Sont officiellement reconnues par l'État congolais</li>
+                                <li>Ont fait l'objet d'une vérification de leurs installations</li>
+                                <li>Respectent des standards de qualité d'enseignement</li>
+                                <li>Sont recommandées par les parents et la communauté</li>
+                            </ul>
+                            <p>Nous vérifions chaque école avant de l'ajouter à notre plateforme. Vous pouvez nous signaler une école qui mériterait d'être ajoutée.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Puis-je visiter l'école avant d'inscrire mon enfant ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Oui, absolument ! Nous vous encourageons même à le faire. Sur la page de chaque école, vous trouverez :</p>
+                            <ul>
+                                <li><strong>Les coordonnées</strong> pour prendre rendez-vous</li>
+                                <li><strong>Les horaires</strong> de visite généralement proposés</li>
+                                <li><strong>Un bouton "Contacter l'école"</strong> pour envoyer un message direct</li>
+                            </ul>
+                            <p>La visite est essentielle pour vérifier que l'environnement convient à votre enfant.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Les informations sur les frais sont-elles à jour ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Oui, nous nous engageons à :</p>
+                            <ul>
+                                <li><strong>Mettre à jour les tarifs</strong> chaque année scolaire</li>
+                                <li><strong>Vérifier avec les écoles</strong> avant la rentrée</li>
+                                <li><strong>Signaler clairement</strong> tout changement en cours d'année</li>
+                            </ul>
+                            <p>Si vous constatez une différence entre nos tarifs et ceux annoncés par l'école, signalez-le nous immédiatement pour que nous vérifiions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Technique -->
+                <div class="faq-section" data-category="technique">
+                    <h2 class="faq-section-title">
+                        <i class="fas fa-cog" style="color: var(--yellow-sun);"></i>
+                        Technique
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Le site ne se charge pas correctement, que faire ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Si vous rencontrez des problèmes de chargement :</p>
+                            <ol>
+                                <li><strong>Vérifiez votre connexion internet</strong></li>
+                                <li><strong>Rafraîchissez la page</strong> (F5 ou tirez vers le bas sur mobile)</li>
+                                <li><strong>Videz le cache</strong> de votre navigateur</li>
+                                <li><strong>Essayez avec un autre navigateur</strong> (Chrome, Firefox, Safari)</li>
+                                <li><strong>Réduisez la qualité des images</strong> si vous êtes en connexion lente</li>
+                            </ol>
+                            <p>Notre site est optimisé pour fonctionner même avec des connexions 3G/4G en RDC.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Est-ce que je peux utiliser le site sans internet ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Notre site est conçu comme une Progressive Web App (PWA) :</p>
+                            <ul>
+                                <li><strong>Une fois visité, certaines pages</strong> restent accessibles hors ligne</li>
+                                <li><strong>Les informations de base</strong> sur les écoles sont mises en cache</li>
+                                <li><strong>Pour l'inscription et le paiement</strong>, une connexion internet est nécessaire</li>
+                            </ul>
+                            <p>Sur Android, vous pouvez "Ajouter à l'écran d'accueil" pour une expérience proche d'une application native.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Mes données sont-elles sécurisées ?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>La sécurité de vos données est notre priorité :</p>
+                            <ul>
+                                <li><strong>Chiffrement SSL</strong> - Toutes les communications sont cryptées</li>
+                                <li><strong>Paiements sécurisés</strong> - Nous ne stockons pas vos informations de paiement</li>
+                                <li><strong>Hébergement local</strong> - Vos données restent en RDC</li>
+                                <li><strong>Accès restreint</strong> - Seules les personnes autorisées peuvent consulter vos informations</li>
+                            </ul>
+                            <p>Consultez notre <a href="privacy.html">politique de confidentialité</a> pour plus de détails.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results Message -->
+                <div class="no-results" id="noResults">
+                    <i class="fas fa-search"></i>
+                    <h3>Aucune question trouvée</h3>
+                    <p>Désolé, nous n'avons pas trouvé de question correspondant à votre recherche.</p>
+                    <p>Essayez avec d'autres mots-clés ou <a href="contact.html">contactez-nous directement</a>.</p>
+                    <button class="btn btn-primary" onclick="resetSearch()">Voir toutes les questions</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Have Questions -->
+    <section class="still-have-questions">
+        <div class="container">
+            <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+            <p>Notre équipe est là pour vous aider. Contactez-nous directement.</p>
+            
+            <div class="contact-options">
+                <a href="https://wa.me/243810000000" target="_blank" class="contact-option">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <a href="tel:+243810000000" class="contact-option">
+                    <i class="fas fa-phone"></i>
+                    Appeler
+                </a>
+                <a href="mailto:contact@ecolefacile.cd" class="contact-option">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </a>
+                <a href="contact.html" class="contact-option">
+                    <i class="fas fa-paper-plane"></i>
+                    Formulaire
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>EcoleFacile.cd</h3>
+                    <p>Simplifiez l'inscription scolaire de vos enfants à Kinshasa.</p>
+                    <div style="margin-top: var(--space-6);">
+                        <a href="#" style="color: var(--yellow-sun); margin-right: var(--space-4);">
+                            <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                        <a href="#" style="color: var(--yellow-sun); margin-right: var(--space-4);">
+                            <i class="fab fa-whatsapp fa-lg"></i>
+                        </a>
+                        <a href="#" style="color: var(--yellow-sun);">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="ecoles.html">Écoles</a></li>
+                        <li><a href="index.html#comment-ca-marche">Comment ça marche</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Communes</h3>
+                    <ul class="footer-links">
+                        <li><a href="ecoles.html?commune=gombe">Gombe</a></li>
+                        <li><a href="ecoles.html?commune=kintambo">Kintambo</a></li>
+                        <li><a href="ecoles.html?commune=ngaliema">Ngaliema</a></li>
+                        <li><a href="ecoles.html?commune=lemba">Lemba</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +243 81 000 0000</li>
+                        <li><i class="fas fa-envelope"></i> contact@ecolefacile.cd</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Gombe, Kinshasa, RDC</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoleFacile.cd - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    
+    <!-- FAQ Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Accordéon FAQ
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Fermer les autres si nécessaire (optionnel)
+                    // Pour permettre plusieurs ouverts en même temps, commentez cette partie
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle l'item cliqué
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Recherche FAQ
+            const searchInput = document.getElementById('faqSearch');
+            const noResultsDiv = document.getElementById('noResults');
+            const faqSections = document.querySelectorAll('.faq-section');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase().trim();
+                    let visibleCount = 0;
+                    
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                        
+                        if (searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            visibleCount++;
+                            
+                            // Ouvrir l'item si la recherche correspond
+                            if (searchTerm !== '' && !item.classList.contains('active')) {
+                                item.classList.add('active');
+                            }
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Afficher/masquer les sections selon si elles ont des éléments visibles
+                    faqSections.forEach(section => {
+                        const visibleItems = section.querySelectorAll('.faq-item[style="display: block;"]');
+                        if (visibleItems.length === 0) {
+                            section.style.display = 'none';
+                        } else {
+                            section.style.display = 'block';
+                        }
+                    });
+                    
+                    // Afficher le message "aucun résultat" si nécessaire
+                    if (visibleCount === 0 && searchTerm !== '') {
+                        noResultsDiv.style.display = 'block';
+                    } else {
+                        noResultsDiv.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Filtres par catégorie
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    // Afficher/masquer les sections
+                    faqSections.forEach(section => {
+                        if (category === 'all' || section.dataset.category === category) {
+                            section.style.display = 'block';
+                            
+                            // Afficher tous les items dans cette section
+                            const items = section.querySelectorAll('.faq-item');
+                            items.forEach(item => {
+                                item.style.display = 'block';
+                            });
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                    
+                    // Réinitialiser la recherche
+                    if (searchInput) {
+                        searchInput.value = '';
+                    }
+                    
+                    noResultsDiv.style.display = 'none';
+                });
+            });
+        });
+        
+        // Fonction pour réinitialiser la recherche
+        window.resetSearch = function() {
+            const searchInput = document.getElementById('faqSearch');
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+            }
+            
+            // Réinitialiser les catégories
+            document.querySelector('.category-btn[data-category="all"]').click();
+        };
+    </script>
+</body>
+</html>
